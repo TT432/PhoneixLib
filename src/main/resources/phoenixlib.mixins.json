@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.nmmoc7.phoenixlib.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "phoenixlib.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
