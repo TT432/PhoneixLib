@@ -23,7 +23,7 @@ public class GIFInstance {
     int[] frameList;
     GIFRenderType[] gifRenderTypes;
 
-    GIFInstance(ResourceLocation file) {
+    public GIFInstance(ResourceLocation file) {
         this.file = file;
         maxFrame = getMaxFrame();
         frameList = new int[maxFrame];
