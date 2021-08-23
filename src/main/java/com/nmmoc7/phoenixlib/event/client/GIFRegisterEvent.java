@@ -4,6 +4,9 @@ import com.nmmoc7.phoenixlib.client.gif.GIFInstance;
 import com.nmmoc7.phoenixlib.client.gif.GIFLoader;
 import net.minecraftforge.eventbus.api.Event;
 
+/**
+ * run in Render Thread
+ */
 public class GIFRegisterEvent extends Event {
     public void register(GIFInstance gif) {
         GIFLoader.INSTANCE.addGIF(gif);
