@@ -1,5 +1,6 @@
 package com.nmmoc7.phoenixlib.client.gif;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.nmmoc7.phoenixlib.event.client.GIFRegisterEvent;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -28,7 +29,7 @@ public final class GIFLoader {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> {
+        RenderSystem.recordRenderCall(() -> {
             MinecraftForge.EVENT_BUS.post(new GIFRegisterEvent());
         });
     }
