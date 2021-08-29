@@ -29,8 +29,6 @@ public final class GIFLoader {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        RenderSystem.recordRenderCall(() -> {
-            MinecraftForge.EVENT_BUS.post(new GIFRegisterEvent());
-        });
+        MinecraftForge.EVENT_BUS.post(new GIFRegisterEvent());
     }
 }
