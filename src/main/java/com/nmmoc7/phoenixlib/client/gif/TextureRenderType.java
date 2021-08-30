@@ -7,9 +7,9 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import org.lwjgl.opengl.GL11;
 
-public class GIFRenderType extends RenderType {
-    GIFRenderType(int texture) {
-        super("gif_render", DefaultVertexFormats.POSITION_COLOR_TEX_LIGHTMAP,
+public class TextureRenderType extends RenderType {
+    TextureRenderType(int texture) {
+        super("texture_render", DefaultVertexFormats.POSITION_COLOR_TEX_LIGHTMAP,
                 GL11.GL_QUADS, 256, false, true,
                 () -> {
                     GENERAL_STATES.forEach(RenderState::setupRenderState);

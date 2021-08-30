@@ -9,8 +9,8 @@ import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
 import java.io.IOException;
 
-public class GIFUtils {
-    public static ImageInputStream getGIFFile(ResourceLocation file) {
+public class FileUtils {
+    public static ImageInputStream getImageFile(ResourceLocation file) {
         IResourceManager a = Minecraft.getInstance().getResourceManager();
         try {
             IResource b = a.getResource(file);
