@@ -30,6 +30,10 @@ public class GIFInstance {
         }
     }
 
+    public TextureRenderType getFrame(int index) {
+        return gifRenderTypes[index];
+    }
+
     private int getMaxFrame() {
         try {
             GIFImageReader reader = (GIFImageReader) ImageIO.getImageReadersByFormatName("gif").next();
