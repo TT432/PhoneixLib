@@ -7,6 +7,7 @@
   "mixins": [
   ],
   "client": [
+    "MixinBlockRendererDispatcher"
   ],
   "injectors": {
     "defaultRequire": 1

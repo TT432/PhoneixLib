@@ -3,7 +3,6 @@ package com.nmmoc7.phoenixlib.client.gif;
 import com.nmmoc7.phoenixlib.event.client.GIFRegisterEvent;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoader;
 import net.minecraftforge.fml.common.Mod;
