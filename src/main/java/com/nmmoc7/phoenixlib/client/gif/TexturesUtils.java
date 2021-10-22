@@ -11,24 +11,18 @@ import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
 import javax.imageio.stream.ImageOutputStream;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 public class TexturesUtils {
-    public static TextureRenderType getPngRenderType(ResourceLocation file) throws IOException {
-        PNGImageReader reader = (PNGImageReader) ImageIO.getImageReadersByFormatName("png").next();
-        ImageInputStream in = FileUtils.getImageFile(file);
-        reader.setInput(in);
-        return createRenderType(reader.read(0));
+    public static TextureRenderType createRenderType(int texture) {
+        return new TextureRenderType(texture);
     }
 
-    public static TextureRenderType createRenderType(BufferedImage texture) throws IOException {
+    public static int loadTexture(BufferedImage texture) throws IOException {
         ByteArrayOutputStream bs = new ByteArrayOutputStream();
         ImageOutputStream iOut = ImageIO.createImageOutputStream(bs);
         ImageIO.write(texture, "png", iOut);
-        int frame = TexturesUtils.loadTexture(bs.toByteArray());
-        return new TextureRenderType(frame);
+        return TexturesUtils.loadTexture(bs.toByteArray());
     }
 
     public static int loadTexture(byte[] frame) throws IOException {
@@ -36,15 +30,12 @@ public class TexturesUtils {
 
         int texture = TextureUtil.generateTextureId();
 
-        TextureUtil.prepareImage(NativeImage.PixelFormatGLCode.RGBA,
-                texture, 2, image.getWidth(), image.getHeight());
-
+        TextureUtil.prepareImage(texture, 0, image.getWidth(), image.getHeight());
         image.uploadTextureSub(0, 0, 0,
                 0, 0,
                 image.getWidth(), image.getHeight(),
-                true, true);
-
-        GL30.glGenerateMipmap(GL11.GL_TEXTURE_2D);
+                false, false,
+                false, true);
 
         return texture;
     }

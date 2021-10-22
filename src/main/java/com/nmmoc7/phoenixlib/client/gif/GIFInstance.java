@@ -7,15 +7,18 @@ import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
 import java.io.IOException;
 
+/**
+ * @author DustW
+ */
 public class GIFInstance {
     public final int maxFrame;
+    int[] frames;
     final ResourceLocation file;
-    TextureRenderType[] gifRenderTypes;
 
     public GIFInstance(ResourceLocation file) {
         this.file = file;
         maxFrame = getMaxFrame();
-        gifRenderTypes = new TextureRenderType[maxFrame];
+        frames = new int[maxFrame];
 
         GIFImageReader reader = (GIFImageReader) ImageIO.getImageReadersByFormatName("gif").next();
         ImageInputStream in = FileUtils.getImageFile(file);
@@ -23,7 +26,7 @@ public class GIFInstance {
 
         try {
             for (int i = 0; i < maxFrame; i++) {
-                gifRenderTypes[i] = TexturesUtils.createRenderType(reader.read(i));
+                frames[i] = TexturesUtils.loadTexture(reader.read(i));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -31,10 +34,18 @@ public class GIFInstance {
     }
 
     public TextureRenderType getFrame(int index) {
-        return gifRenderTypes[index];
+        return TexturesUtils.createRenderType(frames[index]);
     }
 
-    private int getMaxFrame() {
+    public int getMaxFrame() {
+        if (maxFrame == 0) {
+            loadMaxFrame();
+        }
+
+        return maxFrame;
+    }
+
+    private int loadMaxFrame() {
         try {
             GIFImageReader reader = (GIFImageReader) ImageIO.getImageReadersByFormatName("gif").next();
             ImageInputStream in = FileUtils.getImageFile(file);
